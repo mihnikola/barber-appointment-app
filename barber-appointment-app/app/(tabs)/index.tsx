@@ -22,6 +22,7 @@ import { MAIN_DATA } from "@/constants";
 import { getStorage } from "@/helpers";
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
+import axios from "axios";
 
 const yosemite = { latitude: 43.724943, longitude: 20.6952 };
 
@@ -89,7 +90,7 @@ const savePushToken = async (token) => {
 console.log("responseDataUserresponseDataUser",responseDataUser)
   if (responseDataUser) {
     try {
-      const response = await post("/api/save-token", { token, responseDataUser });
+      const response = await axios.post(`${process.env.EXPO_PUBLIC_API_URL}/api/save-token`, { token, responseDataUser });
 
       console.log("resolve+++ ", response);
     } catch (error) {
